@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Idris Lawal">
+    <meta name="author" content="Pia Torain">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="Javasript practice creating a Note Taker App.">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Note Taker App | Reskill Americans</title>
+</head>
+<body>
+    <div class="front-page">
+        <h2 class="header">Note Taker App</h2>
+            <textarea id="note" name="note-text" class="note-area"></textarea>
+            <br>
+            <button id="submit" onclick="saveNote()" class="submit">Save Note</button>
+        <div class="notes-link">
+            <a href="index2.html" >View Notes</a>
+        </div> 
+    </div>
+</body>
+
+<script>
+var textElement = document.getElementById("note")
+
+// saveNewNote() activates when the button is clicked and carries out 3 operations
+    // 1. If a note has not been entered, there will be an alert.
+    // 2. Id generated from the getNewNoteId function is assigned to the constant id.
+    //      The notes stored locally are assigned to the newNoteObject variable.
+    //      If there are not any saved notes, the newNoteObject is initialized.
+    // 3. The id is use to connect the index of the note to the text value of the note. 
+    //      The note is saved locally to the object newNoteObject.
+
+function saveNote() {
+    if(textElement.value == ""){
+        return alert('Where is the note?')
+    }
+    const id = getNewNoteId()
+    let newNoteObject = getSavedNotes()
+    if(!newNoteObject){
+        newNoteObject = {}
+    }
+    newNoteObject[id] = textElement.value
+    localStorage.setItem('notes', JSON.stringify(newNoteObject))
+    alert('Got it! Note Saved!')   
+}
+</script>

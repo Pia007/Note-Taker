@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Note Taker App</title>
+</head>
+
+<div class="second-page">
+    <ol id="notes-list">
+
+    </ol>
+</div>
+
+<a href="index.html"><h3>Back</h3></a>
+
+
+<script> 
+
+// getAllNotes() adds the newest note to the existing notes
+//     Takes each note add adds it to a list (array).
+//     Each note becomes a list item in within the HTML.
+//     Each note is then added to an ordered list to be viewed upon request.
+
+(function getAllNotes(){
+    let notes = getSavedNotes()
+    let notesArray = Object.values(notes)
+    let orderedList = document.getElementById('notes-list')
+    notesArray.forEach(note => {
+        let listItem = document.createElement('li')
+        listItem.innerHTML = note
+        orderedList.appendChild(listItem)
+    })
+})()
+
+</script>
+</html>
